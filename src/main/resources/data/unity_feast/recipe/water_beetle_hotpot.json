@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "BBB",
+    "WWW"
+  ],
+  "key": {
+    "B": "unity_feast:water_beetle",
+    "W": "minecraft:wheat"
+  },
+  "result": {
+    "id": "unity_feast:water_beetle_hotpot",
+    "count": 1
+  }
+}

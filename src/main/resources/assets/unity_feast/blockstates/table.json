@@ -1,0 +1,41 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "unity_feast:block/table"
+      }
+    },
+    {
+      "when": {
+        "dumpling_nw": "true"
+      },
+      "apply": {
+        "model": "unity_feast:block/dumpling_nw"
+      }
+    },
+    {
+      "when": {
+        "dumpling_ne": "true"
+      },
+      "apply": {
+        "model": "unity_feast:block/dumpling_ne"
+      }
+    },
+    {
+      "when": {
+        "dumpling_se": "true"
+      },
+      "apply": {
+        "model": "unity_feast:block/dumpling_se"
+      }
+    },
+    {
+      "when": {
+        "dumpling_sw": "true"
+      },
+      "apply": {
+        "model": "unity_feast:block/dumpling_sw"
+      }
+    }
+  ]
+}

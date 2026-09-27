@@ -1,0 +1,17 @@
+{
+  "type": "unity_feast:same_planks_table",
+  "category": "building",
+  "pattern": [
+    "PPP",
+    "S S",
+    "S S"
+  ],
+  "key": {
+    "P": "#minecraft:planks",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "unity_feast:table",
+    "count": 1
+  }
+}

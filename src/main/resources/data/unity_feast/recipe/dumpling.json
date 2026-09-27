@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " P ",
+    "WWW"
+  ],
+  "key": {
+    "P": "minecraft:porkchop",
+    "W": "minecraft:wheat"
+  },
+  "result": {
+    "id": "unity_feast:dumpling",
+    "count": 3
+  }
+}

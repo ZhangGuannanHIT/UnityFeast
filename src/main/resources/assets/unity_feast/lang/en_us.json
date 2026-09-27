@@ -1,0 +1,12 @@
+{
+  "block.unity_feast.table": "Table",
+  "item.unity_feast.dumpling": "Dumpling",
+  "item.unity_feast.table_dumpling": "Table Dumpling",
+  "item.unity_feast.water_beetle": "Water Beetle",
+  "item.unity_feast.water_beetle_hotpot": "Water Beetle Hotpot",
+  "item.unity_feast.unity_heart": "Heart of Unity",
+  "itemGroup.unity_feast": "Unity Feast",
+  "tooltip.unity_feast.table": "Place dumplings; use an empty hand to take table dumplings",
+  "tooltip.unity_feast.table_dumpling": "Removes harmful effects; Absorption and Regeneration for 15s",
+  "tooltip.unity_feast.unity_heart": "Adds 2 maximum health per heart; death retention follows keepInventory"
+}

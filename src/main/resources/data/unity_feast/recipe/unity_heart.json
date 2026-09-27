@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "unity_feast:table_dumpling",
+    "unity_feast:water_beetle_hotpot"
+  ],
+  "result": {
+    "id": "unity_feast:unity_heart",
+    "count": 1
+  }
+}

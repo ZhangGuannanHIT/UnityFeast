@@ -1,0 +1,12 @@
+{
+  "block.unity_feast.table": "桌子",
+  "item.unity_feast.dumpling": "饺子",
+  "item.unity_feast.table_dumpling": "桌饺",
+  "item.unity_feast.water_beetle": "水蟑螂",
+  "item.unity_feast.water_beetle_hotpot": "清水龙虱打边炉",
+  "item.unity_feast.unity_heart": "团结之心",
+  "itemGroup.unity_feast": "团结餐桌",
+  "tooltip.unity_feast.table": "普通饺子上桌，空手取回桌饺",
+  "tooltip.unity_feast.table_dumpling": "清除负面效果；伤害吸收、生命恢复 15 秒",
+  "tooltip.unity_feast.unity_heart": "每颗永久增加 2 点生命上限；死亡是否保留遵循死亡不掉落规则"
+}
