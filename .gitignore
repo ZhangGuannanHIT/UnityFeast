@@ -1,22 +1,10 @@
-# Allowlist: only source, required assets, build files and maintenance scripts.
-# Local environments, instances, logs, screenshots, reports and release archives stay out.
+# Allowlist: source code and game resources, plus README and required license notices.
+# Build configuration, Wrapper, tools, caches, instances and release artifacts stay local.
 /*
 !/.gitignore
 !/README.md
 !/LICENSE
 !/TEMPLATE_LICENSE.txt
-!/build.gradle
-!/settings.gradle
-!/gradle.properties
-!/gradlew
-!/gradlew.bat
-
-!/gradle/
-/gradle/**
-!/gradle/wrapper/
-!/gradle/wrapper/gradle-wrapper.jar
-!/gradle/wrapper/gradle-wrapper.properties
-
 !/src/
 /src/**
 !/src/**/
@@ -24,15 +12,6 @@
 !/src/**/*.json
 !/src/**/*.png
 !/src/**/*.toml
-
-!/tools/
-/tools/*
-!/tools/bootstrap.py
-!/tools/gradle.ps1
-!/tools/generate_assets.py
-!/tools/check_resources.py
-!/tools/run_runtime.py
-!/tools/package_release.py
 
 # Generated files must remain ignored even if created below a source directory.
 **/__pycache__/
