@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "unity_feast:block/greenbelt_seedling"
+    },
+    "age=1": {
+      "model": "unity_feast:block/greenbelt_seedling"
+    },
+    "age=2": {
+      "model": "unity_feast:block/greenbelt_seedling"
+    },
+    "age=3": {
+      "model": "unity_feast:block/greenbelt_seedling"
+    },
+    "age=4": {
+      "model": "unity_feast:block/greenbelt_seedling"
+    },
+    "age=5": {
+      "model": "unity_feast:block/greenbelt_seedling"
+    },
+    "age=6": {
+      "model": "unity_feast:block/greenbelt_seedling"
+    },
+    "age=7": {
+      "model": "unity_feast:block/greenbelt_mature"
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{"required":true,"package":"cn.zgnhit.unityfeast.test.mixin","compatibilityLevel":"JAVA_25","mixins":["VegetationAuditMixin"],"injectors":{"defaultRequire":1}}

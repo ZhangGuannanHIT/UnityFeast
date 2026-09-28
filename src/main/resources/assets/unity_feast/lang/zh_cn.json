@@ -18,5 +18,14 @@
   "tooltip.unity_feast.captain_flight": "放在副手时允许创造模式式飞行",
   "tooltip.unity_feast.weijixian": "生命上限 +20；恢复生命与饥饿，清除负面效果",
   "death.attack.unity_feast.stinky_fish": "%1$s 吃坏了肚子",
-  "death.attack.unity_feast.stinky_fish.player": "%1$s 在与 %2$s 战斗时吃坏了肚子"
+  "death.attack.unity_feast.stinky_fish.player": "%1$s 在与 %2$s 战斗时吃坏了肚子",
+  "block.unity_feast.greenbelt": "绿化带",
+  "block.unity_feast.sauce_vat": "酱缸",
+  "item.unity_feast.soy_paste": "大酱",
+  "item.unity_feast.dipped_lettuce": "蘸酱菜",
+  "item.unity_feast.kitchen_knife": "菜刀",
+  "block.unity_feast.cutting_board": "菜板",
+  "item.unity_feast.raw_pork_slices": "猪肉生",
+  "item.unity_feast.salmon_sashimi": "生鱼片",
+  "item.unity_feast.white_cut_chicken": "白切鸡"
 }

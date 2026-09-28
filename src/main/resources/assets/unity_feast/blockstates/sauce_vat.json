@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "fill=0": {
+      "model": "unity_feast:block/sauce_vat_0"
+    },
+    "fill=1": {
+      "model": "unity_feast:block/sauce_vat_1"
+    },
+    "fill=2": {
+      "model": "unity_feast:block/sauce_vat_2"
+    },
+    "fill=3": {
+      "model": "unity_feast:block/sauce_vat_3"
+    }
+  }
+}

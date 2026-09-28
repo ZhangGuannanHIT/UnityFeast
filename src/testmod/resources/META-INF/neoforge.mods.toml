@@ -1,12 +1,15 @@
 license="MIT"
 [[mods]]
 modId="unity_feast_tests"
-version="1.1.0"
+version="1.2.0"
 displayName="Unity Feast Development Tests"
 description="Development-only tests. Do not install in a survival world."
 [[dependencies.unity_feast_tests]]
 modId="unity_feast"
 type="required"
-versionRange="[1.0.0,1.1.0]"
+versionRange="[1.0.0,1.2.0]"
 ordering="AFTER"
 side="BOTH"
+
+[[mixins]]
+config="unity_feast_tests.mixins.json"

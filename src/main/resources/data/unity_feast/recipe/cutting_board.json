@@ -1,0 +1,15 @@
+{
+  "type": "unity_feast:same_planks_board",
+  "category": "misc",
+  "pattern": [
+    "PPS"
+  ],
+  "key": {
+    "P": "#minecraft:planks",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "unity_feast:cutting_board",
+    "count": 1
+  }
+}

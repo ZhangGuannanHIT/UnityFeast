@@ -86,3 +86,6 @@ Client and server must both install this content mod.
 # stop your mod loading on the server for example.
 #[features.${mod_id}]
 #openGLVersion="[3.2,)"
+
+[[mixins]]
+config="unity_feast.mixins.json"

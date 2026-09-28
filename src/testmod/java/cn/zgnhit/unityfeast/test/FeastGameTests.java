@@ -46,6 +46,14 @@ public final class FeastGameTests {
     private static final Map<String, Consumer<GameTestHelper>> TESTS = new LinkedHashMap<>();
     static {
         if(!System.getProperty("unity_feast.scenario","").equals("legacy")) {
+        TESTS.put("kitchen_recipes",KitchenTests::recipes);
+        TESTS.put("kitchen_vat",KitchenTests::vat);
+        TESTS.put("kitchen_board",KitchenTests::board);
+        TESTS.put("kitchen_foods",KitchenTests::foods);
+        TESTS.put("kitchen_plant",KitchenTests::plant);
+        TESTS.put("kitchen_generation",KitchenTests::generation);
+        TESTS.put("kitchen_crafting_containers",KitchenTests::craftingContainers);
+        TESTS.put("kitchen_growth",KitchenTests::growth);
         TESTS.put("upgrade_and_fish", UpdateGameTests::tableUpgrade);
         TESTS.put("new_foods_recipes", UpdateBehaviorTests::foodsAndRecipes);
         TESTS.put("mixed_food_deaths", UpdateBehaviorTests::mixedDeaths);
@@ -68,6 +76,8 @@ public final class FeastGameTests {
             TESTS.keySet().removeIf(name -> !name.equals("rat_spawn") && !name.equals("rat_combat"));
         if (System.getProperty("unity_feast.scenario", "").equals("rat-life"))
             TESTS.keySet().removeIf(name -> !name.startsWith("rat_") || name.equals("rat_jump"));
+        if (System.getProperty("unity_feast.scenario", "").equals("kitchen"))
+            TESTS.keySet().removeIf(name -> !name.startsWith("kitchen_"));
         TESTS.forEach((name, test) -> FUNCTIONS.register(name, () -> test));
         }
     }

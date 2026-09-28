@@ -18,5 +18,14 @@
   "tooltip.unity_feast.captain_flight": "Allows creative-style flight while held in the offhand",
   "tooltip.unity_feast.weijixian": "+20 maximum health; restores health and hunger, removes harmful effects",
   "death.attack.unity_feast.stinky_fish": "%1$s ate rotten fish",
-  "death.attack.unity_feast.stinky_fish.player": "%1$s ate rotten fish while fighting %2$s"
+  "death.attack.unity_feast.stinky_fish.player": "%1$s ate rotten fish while fighting %2$s",
+  "block.unity_feast.greenbelt": "Greenbelt",
+  "block.unity_feast.sauce_vat": "Sauce Vat",
+  "item.unity_feast.soy_paste": "Soy Paste",
+  "item.unity_feast.dipped_lettuce": "Dipped Lettuce",
+  "item.unity_feast.kitchen_knife": "Kitchen Knife",
+  "block.unity_feast.cutting_board": "Cutting Board",
+  "item.unity_feast.raw_pork_slices": "Raw Pork Slices",
+  "item.unity_feast.salmon_sashimi": "Salmon Sashimi",
+  "item.unity_feast.white_cut_chicken": "White-cut Chicken"
 }

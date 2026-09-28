@@ -73,7 +73,8 @@ public final class RatLifeTests {
             level.getEntitiesOfClass(Entity.class, birthArea).stream()
                     .filter(entity -> !beforeBirth.contains(entity)).forEach(fixture::track);
         }
-        var rats = level.getEntitiesOfClass(Rat.class, new AABB(origin).inflate(5));
+        var rats = level.getEntitiesOfClass(Rat.class, new AABB(origin).inflate(5)).stream()
+                .filter(rat -> rat == first || rat == second || !beforeBirth.contains(rat)).toList();
         h.assertValueEqual(rats.size(), 3, "one pair produces exactly one offspring");
         var child = rats.stream().filter(rat -> rat != first && rat != second).findFirst().orElseThrow();
         h.assertTrue(!child.isBaby() && child.getAge() == 0, "offspring is born adult");

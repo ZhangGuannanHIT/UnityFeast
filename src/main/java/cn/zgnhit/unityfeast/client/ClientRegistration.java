@@ -10,6 +10,7 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 public final class ClientRegistration {
     @SubscribeEvent public static void renderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(UnityFeastMod.TABLE_ENTITY.get(),TableRenderer::new);
+        event.registerBlockEntityRenderer(UnityFeastMod.CUTTING_BOARD_ENTITY.get(),CuttingBoardRenderer::new);
         event.registerEntityRenderer(UnityFeastMod.RAT.get(),RatRenderer::new);
     }
     @SubscribeEvent public static void layers(EntityRenderersEvent.RegisterLayerDefinitions event){event.registerLayerDefinition(RatModel.LAYER,RatModel::layer);}

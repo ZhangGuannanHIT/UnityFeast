@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "LLL",
+    " S "
+  ],
+  "key": {
+    "L": "unity_feast:greenbelt",
+    "S": "unity_feast:soy_paste"
+  },
+  "result": {
+    "id": "unity_feast:dipped_lettuce",
+    "count": 3
+  }
+}

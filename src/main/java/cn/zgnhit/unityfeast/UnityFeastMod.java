@@ -2,6 +2,16 @@ package cn.zgnhit.unityfeast;
 
 import cn.zgnhit.unityfeast.block.TableBlock;
 import cn.zgnhit.unityfeast.block.TableBlockEntity;
+import cn.zgnhit.unityfeast.block.GreenbeltBlock;
+import cn.zgnhit.unityfeast.block.SauceVatBlock;
+import cn.zgnhit.unityfeast.block.CuttingBoardBlock;
+import cn.zgnhit.unityfeast.block.CuttingBoardBlockEntity;
+import cn.zgnhit.unityfeast.item.GreenbeltItem;
+import cn.zgnhit.unityfeast.item.KitchenKnifeItem;
+import cn.zgnhit.unityfeast.recipe.SamePlanksBoardRecipe;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.component.Weapon;
 import cn.zgnhit.unityfeast.item.StinkyFishItem;
 import cn.zgnhit.unityfeast.item.FoodDamage;
 import cn.zgnhit.unityfeast.item.CaptainItem;
@@ -65,6 +75,28 @@ public final class UnityFeastMod {
     public static final DeferredBlock<TableBlock> TABLE = BLOCKS.registerBlock("table", TableBlock::new,
             p -> p.mapColor(MapColor.WOOD).strength(2.5F).sound(SoundType.WOOD).noOcclusion().pushReaction(PushReaction.BLOCK));
     public static final DeferredItem<BlockItem> TABLE_ITEM = ITEMS.registerSimpleBlockItem("table", TABLE);
+    public static final DeferredBlock<GreenbeltBlock> GREENBELT=BLOCKS.registerBlock("greenbelt",GreenbeltBlock::new,
+            p->p.mapColor(MapColor.PLANT).replaceable().noCollision().instabreak().sound(SoundType.GRASS).randomTicks().ignitedByLava().pushReaction(PushReaction.DESTROY));
+    public static final DeferredItem<GreenbeltItem> GREENBELT_ITEM=ITEMS.registerItem("greenbelt",p->new GreenbeltItem(GREENBELT.get(),p.food(food(2,false),
+            Consumable.builder().consumeSeconds(1.6F).onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.NAUSEA,60),.3F)).build()).useBlockDescriptionPrefix()));
+    public static final DeferredBlock<SauceVatBlock> SAUCE_VAT=BLOCKS.registerBlock("sauce_vat",SauceVatBlock::new,p->p.mapColor(MapColor.COLOR_RED).strength(2).sound(SoundType.STONE).noOcclusion());
+    public static final DeferredItem<BlockItem> SAUCE_VAT_ITEM=ITEMS.registerSimpleBlockItem("sauce_vat",SAUCE_VAT);
+    public static final DeferredItem<Item> SOY_PASTE=ITEMS.registerSimpleItem("soy_paste",p->p.stacksTo(1).food(food(6,false),effects(new MobEffectInstance(MobEffects.NAUSEA,100))).usingConvertsTo(Items.BOWL).craftRemainder(Items.BOWL));
+    public static final DeferredItem<Item> DIPPED_LETTUCE=ITEMS.registerSimpleItem("dipped_lettuce",p->p.food(food(4,false),effects(new MobEffectInstance(MobEffects.STRENGTH,200,1))));
+    public static final DeferredItem<KitchenKnifeItem> KITCHEN_KNIFE=ITEMS.registerItem("kitchen_knife",p->new KitchenKnifeItem(p.durability(251).repairable(Items.IRON_INGOT)
+            .component(DataComponents.WEAPON,new Weapon(1)).attributes(ItemAttributeModifiers.builder()
+            .add(Attributes.ATTACK_DAMAGE,new AttributeModifier(Item.BASE_ATTACK_DAMAGE_ID,3,AttributeModifier.Operation.ADD_VALUE),EquipmentSlotGroup.MAINHAND)
+            .add(Attributes.ATTACK_SPEED,new AttributeModifier(Item.BASE_ATTACK_SPEED_ID,-3,AttributeModifier.Operation.ADD_VALUE),EquipmentSlotGroup.MAINHAND).build())));
+    public static final DeferredBlock<CuttingBoardBlock> CUTTING_BOARD=BLOCKS.registerBlock("cutting_board",CuttingBoardBlock::new,p->p.mapColor(MapColor.WOOD).strength(1).sound(SoundType.WOOD).noOcclusion().pushReaction(PushReaction.DESTROY));
+    public static final DeferredItem<BlockItem> CUTTING_BOARD_ITEM=ITEMS.registerSimpleBlockItem("cutting_board",CUTTING_BOARD);
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<CuttingBoardBlockEntity>> CUTTING_BOARD_ENTITY=BLOCK_ENTITIES.register("cutting_board",()->new BlockEntityType<>(CuttingBoardBlockEntity::new,CUTTING_BOARD.get()));
+    public static final DeferredItem<Item> RAW_PORK_SLICES=ITEMS.registerSimpleItem("raw_pork_slices",p->p.food(food(4,false),Consumable.builder().consumeSeconds(1.6F)
+            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.NAUSEA,100)))
+            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.POISON,200),.3F)).build()));
+    public static final DeferredItem<Item> SALMON_SASHIMI=ITEMS.registerSimpleItem("salmon_sashimi",p->p.food(food(2,false),Consumable.builder().consumeSeconds(1.6F)
+            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.POISON,100),.2F)).build()));
+    public static final DeferredItem<Item> WHITE_CUT_CHICKEN=ITEMS.registerSimpleItem("white_cut_chicken",p->p.food(food(6,false),effects(new MobEffectInstance(MobEffects.LEVITATION,200))));
+    public static final DeferredHolder<RecipeSerializer<?>,RecipeSerializer<SamePlanksBoardRecipe>> BOARD_RECIPE=RECIPES.register("same_planks_board",()->new RecipeSerializer<>(SamePlanksBoardRecipe.CODEC,SamePlanksBoardRecipe.STREAM_CODEC));
     public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<TableBlockEntity>> TABLE_ENTITY = BLOCK_ENTITIES.register("table",()->new BlockEntityType<>(TableBlockEntity::new,TABLE.get()));
     public static final DeferredItem<StinkyFishItem> STINKY_FISH = ITEMS.registerItem("stinky_fish",p->new StinkyFishItem(p.food(food(2,false))));
     public static final DeferredItem<Item> SAN_ZHI=ITEMS.registerSimpleItem("san_zhi",p->p.food(food(2,false),effects(new MobEffectInstance(MobEffects.POISON,60),new MobEffectInstance(MobEffects.NAUSEA,60))));
@@ -104,6 +136,8 @@ public final class UnityFeastMod {
                     out.accept(STINKY_FISH.get());
                     out.accept(SAN_ZHI.get());
                     out.accept(WEIJIXIAN.get());out.accept(CAPTAIN.get());
+                    out.accept(GREENBELT_ITEM.get());out.accept(SAUCE_VAT_ITEM.get());out.accept(SOY_PASTE.get());out.accept(DIPPED_LETTUCE.get());
+                    out.accept(KITCHEN_KNIFE.get());out.accept(CUTTING_BOARD_ITEM.get());out.accept(RAW_PORK_SLICES.get());out.accept(SALMON_SASHIMI.get());out.accept(WHITE_CUT_CHICKEN.get());
                 }).build());
     }
 
