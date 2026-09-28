@@ -8,5 +8,15 @@
   "itemGroup.unity_feast": "团结餐桌",
   "tooltip.unity_feast.table": "普通饺子上桌，空手取回桌饺",
   "tooltip.unity_feast.table_dumpling": "清除负面效果；伤害吸收、生命恢复 15 秒",
-  "tooltip.unity_feast.unity_heart": "每颗永久增加 2 点生命上限；死亡是否保留遵循死亡不掉落规则"
+  "tooltip.unity_feast.unity_heart": "每颗永久增加 2 点生命上限；死亡是否保留遵循死亡不掉落规则",
+  "item.unity_feast.stinky_fish": "臭鱼",
+  "item.unity_feast.san_zhi": "三吱",
+  "item.unity_feast.weijixian": "味极鲜",
+  "item.unity_feast.captain": "机长",
+  "entity.unity_feast.rat": "老鼠",
+  "tooltip.unity_feast.captain": "中国人能飞。",
+  "tooltip.unity_feast.captain_flight": "放在副手时允许创造模式式飞行",
+  "tooltip.unity_feast.weijixian": "生命上限 +20；恢复生命与饥饿，清除负面效果",
+  "death.attack.unity_feast.stinky_fish": "%1$s 吃坏了肚子",
+  "death.attack.unity_feast.stinky_fish.player": "%1$s 在与 %2$s 战斗时吃坏了肚子"
 }

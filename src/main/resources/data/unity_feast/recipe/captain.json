@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "HHH",
+    "HWH",
+    "HHH"
+  ],
+  "key": {
+    "H": "unity_feast:unity_heart",
+    "W": "unity_feast:weijixian"
+  },
+  "result": {
+    "id": "unity_feast:captain",
+    "count": 1
+  }
+}

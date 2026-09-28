@@ -8,5 +8,15 @@
   "itemGroup.unity_feast": "Unity Feast",
   "tooltip.unity_feast.table": "Place dumplings; use an empty hand to take table dumplings",
   "tooltip.unity_feast.table_dumpling": "Removes harmful effects; Absorption and Regeneration for 15s",
-  "tooltip.unity_feast.unity_heart": "Adds 2 maximum health per heart; death retention follows keepInventory"
+  "tooltip.unity_feast.unity_heart": "Adds 2 maximum health per heart; death retention follows keepInventory",
+  "item.unity_feast.stinky_fish": "Stinky Fish",
+  "item.unity_feast.san_zhi": "San Zhi",
+  "item.unity_feast.weijixian": "Weijixian",
+  "item.unity_feast.captain": "Captain",
+  "entity.unity_feast.rat": "Rat",
+  "tooltip.unity_feast.captain": "Chinese people can fly.",
+  "tooltip.unity_feast.captain_flight": "Allows creative-style flight while held in the offhand",
+  "tooltip.unity_feast.weijixian": "+20 maximum health; restores health and hunger, removes harmful effects",
+  "death.attack.unity_feast.stinky_fish": "%1$s ate rotten fish",
+  "death.attack.unity_feast.stinky_fish.player": "%1$s ate rotten fish while fighting %2$s"
 }

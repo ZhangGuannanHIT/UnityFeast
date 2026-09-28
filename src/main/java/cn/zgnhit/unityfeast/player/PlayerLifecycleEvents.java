@@ -18,7 +18,7 @@ public final class PlayerLifecycleEvents {
         if (event.getEntity() instanceof ServerPlayer player) {
             var old = player.getData(UnityFeastMod.HEART_DATA);
             boolean keep = player.level().getGameRules().get(GameRules.KEEP_INVENTORY);
-            player.setData(UnityFeastMod.HEART_DATA, new UnityHeartData(old.hearts(), keep ? 2 : 1, event));
+            player.setData(UnityFeastMod.HEART_DATA, new UnityHeartData(old.hearts(),old.soups(), keep ? 2 : 1, event));
         }
     }
     @SubscribeEvent public static void tick(PlayerTickEvent.Post event) {
@@ -26,7 +26,7 @@ public final class PlayerLifecycleEvents {
             var data = player.getData(UnityFeastMod.HEART_DATA);
             if (data.pendingDeath() != null) {
                 int policy = data.confirmedPolicy();
-                player.setData(UnityFeastMod.HEART_DATA, new UnityHeartData(policy == 1 ? 0 : data.hearts(), policy));
+                player.setData(UnityFeastMod.HEART_DATA, new UnityHeartData(policy == 1 ? 0 : data.hearts(),policy == 1 ? 0 : data.soups(), policy));
                 UnityHeartService.reconcile(player);
             }
         }

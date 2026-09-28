@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "food",
+  "ingredients": [
+    "unity_feast:water_beetle_hotpot",
+    "unity_feast:stinky_fish",
+    "unity_feast:san_zhi",
+    "unity_feast:table_dumpling",
+    "unity_feast:table_dumpling"
+  ],
+  "result": {
+    "id": "unity_feast:weijixian",
+    "count": 1
+  }
+}

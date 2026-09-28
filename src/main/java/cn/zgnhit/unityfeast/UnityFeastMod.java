@@ -1,6 +1,21 @@
 package cn.zgnhit.unityfeast;
 
 import cn.zgnhit.unityfeast.block.TableBlock;
+import cn.zgnhit.unityfeast.block.TableBlockEntity;
+import cn.zgnhit.unityfeast.item.StinkyFishItem;
+import cn.zgnhit.unityfeast.item.FoodDamage;
+import cn.zgnhit.unityfeast.item.CaptainItem;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.neoforged.neoforge.common.NeoForgeMod;
+import cn.zgnhit.unityfeast.entity.Rat;
+import cn.zgnhit.unityfeast.entity.RatSpawnsBiomeModifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import cn.zgnhit.unityfeast.item.FeastFoodItem;
 import cn.zgnhit.unityfeast.loot.WaterBeetleFishingModifier;
 import cn.zgnhit.unityfeast.player.UnityHeartData;
@@ -26,6 +41,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
+import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.registries.*;
 
 @Mod(UnityFeastMod.ID)
@@ -37,11 +53,24 @@ public final class UnityFeastMod {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ID);
     public static final DeferredRegister<RecipeSerializer<?>> RECIPES = DeferredRegister.create(Registries.RECIPE_SERIALIZER, ID);
     public static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> LOOT = DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, ID);
+    public static final DeferredRegister<MapCodec<? extends BiomeModifier>> BIOME_MODIFIERS = DeferredRegister.create(NeoForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, ID);
+    public static final DeferredHolder<MapCodec<? extends BiomeModifier>,MapCodec<RatSpawnsBiomeModifier>> RAT_SPAWNS = BIOME_MODIFIERS.register("rat_spawns",()->RatSpawnsBiomeModifier.CODEC);
     public static final DeferredRegister<AttachmentType<?>> ATTACHMENTS = DeferredRegister.create(NeoForgeRegistries.Keys.ATTACHMENT_TYPES, ID);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE,ID);
+    public static final TagKey<Item> RAW_FISH = TagKey.create(Registries.ITEM,id("raw_fish"));
+    public static final DeferredRegister<EntityType<?>> ENTITIES=DeferredRegister.create(Registries.ENTITY_TYPE,ID);
+    public static final DeferredHolder<EntityType<?>,EntityType<Rat>> RAT=ENTITIES.register("rat",()->EntityType.Builder.of(Rat::new,MobCategory.CREATURE)
+            .sized(.4F,.3F).eyeHeight(.23F).clientTrackingRange(8).build(ResourceKey.create(Registries.ENTITY_TYPE,id("rat"))));
 
     public static final DeferredBlock<TableBlock> TABLE = BLOCKS.registerBlock("table", TableBlock::new,
             p -> p.mapColor(MapColor.WOOD).strength(2.5F).sound(SoundType.WOOD).noOcclusion().pushReaction(PushReaction.BLOCK));
     public static final DeferredItem<BlockItem> TABLE_ITEM = ITEMS.registerSimpleBlockItem("table", TABLE);
+    public static final DeferredHolder<BlockEntityType<?>,BlockEntityType<TableBlockEntity>> TABLE_ENTITY = BLOCK_ENTITIES.register("table",()->new BlockEntityType<>(TableBlockEntity::new,TABLE.get()));
+    public static final DeferredItem<StinkyFishItem> STINKY_FISH = ITEMS.registerItem("stinky_fish",p->new StinkyFishItem(p.food(food(2,false))));
+    public static final DeferredItem<Item> SAN_ZHI=ITEMS.registerSimpleItem("san_zhi",p->p.food(food(2,false),effects(new MobEffectInstance(MobEffects.POISON,60),new MobEffectInstance(MobEffects.NAUSEA,60))));
+    public static final DeferredItem<FeastFoodItem> WEIJIXIAN=ITEMS.registerItem("weijixian",p->new FeastFoodItem(p.food(new FoodProperties.Builder().nutrition(0).saturationModifier(0).alwaysEdible().build()),FeastFoodItem.Kind.WEIJIXIAN));
+    public static final DeferredItem<CaptainItem> CAPTAIN=ITEMS.registerItem("captain",p->new CaptainItem(p.stacksTo(1).attributes(ItemAttributeModifiers.builder()
+            .add(NeoForgeMod.CREATIVE_FLIGHT,new AttributeModifier(id("captain_flight"),1,AttributeModifier.Operation.ADD_VALUE),EquipmentSlotGroup.OFFHAND).build())));
     public static final DeferredItem<Item> DUMPLING = ITEMS.registerSimpleItem("dumpling", p -> p.food(food(4, false)));
     public static final DeferredItem<FeastFoodItem> TABLE_DUMPLING = ITEMS.registerItem("table_dumpling",
             p -> new FeastFoodItem(p.food(food(4, true)), FeastFoodItem.Kind.TABLE_DUMPLING));
@@ -60,7 +89,11 @@ public final class UnityFeastMod {
 
     public UnityFeastMod(IEventBus bus) {
         BLOCKS.register(bus); ITEMS.register(bus); TABS.register(bus); RECIPES.register(bus); LOOT.register(bus); ATTACHMENTS.register(bus);
+        BLOCK_ENTITIES.register(bus);
+        ENTITIES.register(bus);
+        BIOME_MODIFIERS.register(bus);
         NeoForge.EVENT_BUS.register(PlayerLifecycleEvents.class);
+        NeoForge.EVENT_BUS.register(FoodDamage.class);
     }
 
     static {
@@ -68,6 +101,9 @@ public final class UnityFeastMod {
                 .icon(() -> UNITY_HEART.get().getDefaultInstance()).displayItems((parameters, out) -> {
                     out.accept(TABLE_ITEM.get()); out.accept(DUMPLING.get()); out.accept(TABLE_DUMPLING.get());
                     out.accept(WATER_BEETLE.get()); out.accept(HOTPOT.get()); out.accept(UNITY_HEART.get());
+                    out.accept(STINKY_FISH.get());
+                    out.accept(SAN_ZHI.get());
+                    out.accept(WEIJIXIAN.get());out.accept(CAPTAIN.get());
                 }).build());
     }
 

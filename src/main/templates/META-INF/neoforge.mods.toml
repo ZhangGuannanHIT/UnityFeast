@@ -40,7 +40,7 @@ displayName="${mod_name}" #mandatory
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-团结餐桌：桌子、饺子、桌饺、水蟑螂、清水龙虱打边炉与团结之心。
+团结餐桌：桌面摆饺子与生鱼、钓水蟑螂、寻找老鼠，制作团结之心、味极鲜和能在副手提供飞行的机长。
 Client and server must both install this content mod.
 '''
 

@@ -19,81 +19,11 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "unity_feast:dumpling"
+          "type": "minecraft:dynamic",
+          "name": "unity_feast:table_contents"
         }
       ],
       "conditions": [
-        {
-          "condition": "minecraft:block_state_property",
-          "block": "unity_feast:table",
-          "properties": {
-            "dumpling_nw": "true"
-          }
-        },
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "unity_feast:dumpling"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:block_state_property",
-          "block": "unity_feast:table",
-          "properties": {
-            "dumpling_ne": "true"
-          }
-        },
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "unity_feast:dumpling"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:block_state_property",
-          "block": "unity_feast:table",
-          "properties": {
-            "dumpling_se": "true"
-          }
-        },
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "unity_feast:dumpling"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:block_state_property",
-          "block": "unity_feast:table",
-          "properties": {
-            "dumpling_sw": "true"
-          }
-        },
         {
           "condition": "minecraft:survives_explosion"
         }

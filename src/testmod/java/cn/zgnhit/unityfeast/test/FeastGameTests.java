@@ -45,18 +45,39 @@ public final class FeastGameTests {
     private static final DeferredRegister<Consumer<GameTestHelper>> FUNCTIONS = DeferredRegister.create(Registries.TEST_FUNCTION, ID);
     private static final Map<String, Consumer<GameTestHelper>> TESTS = new LinkedHashMap<>();
     static {
+        if(!System.getProperty("unity_feast.scenario","").equals("legacy")) {
+        TESTS.put("upgrade_and_fish", UpdateGameTests::tableUpgrade);
+        TESTS.put("new_foods_recipes", UpdateBehaviorTests::foodsAndRecipes);
+        TESTS.put("mixed_food_deaths", UpdateBehaviorTests::mixedDeaths);
+        TESTS.put("flight_protection", UpdateBehaviorTests::flightAndProtection);
+        TESTS.put("flight_lifecycle", UpdateBehaviorTests::flightLifecycle);
+        TESTS.put("rat_combat", UpdateBehaviorTests::ratCombat);
+        TESTS.put("rat_jump", UpdateBehaviorTests::ratJump);
+        TESTS.put("rat_spawn", RatSpawnTests::pigParity);
+        TESTS.put("rat_breeding", RatLifeTests::breeding);
+        TESTS.put("rat_crop_rules", RatLifeTests::cropRules);
+        TESTS.put("rat_forage_navigation", RatLifeTests::forageNavigation);
+        TESTS.put("rat_idle_roaming", RatLifeTests::idleRoaming);
         TESTS.put("recipes", FeastGameTests::recipes);
         TESTS.put("table_interactions_and_loot", FeastGameTests::table);
         TESTS.put("food_effects", FeastGameTests::foods);
         TESTS.put("hearts_save_load", FeastGameTests::hearts);
         TESTS.put("death_and_clone", FeastGameTests::deaths);
         TESTS.put("fishing", FeastGameTests::fishing);
+        if (System.getProperty("unity_feast.scenario", "").equals("rat-spawning"))
+            TESTS.keySet().removeIf(name -> !name.equals("rat_spawn") && !name.equals("rat_combat"));
+        if (System.getProperty("unity_feast.scenario", "").equals("rat-life"))
+            TESTS.keySet().removeIf(name -> !name.startsWith("rat_") || name.equals("rat_jump"));
         TESTS.forEach((name, test) -> FUNCTIONS.register(name, () -> test));
+        }
     }
     public FeastGameTests(IEventBus bus) {
+        if(System.getProperty("unity_feast.scenario","").equals("legacy")){NeoForge.EVENT_BUS.register(LegacyPreparation.class);return;}
         FUNCTIONS.register(bus);
         bus.addListener(FeastGameTests::register);
         NeoForge.EVENT_BUS.register(AcceptanceServer.class);
+        NeoForge.EVENT_BUS.register(DiskUpgradeTest.class);
+        NeoForge.EVENT_BUS.register(LocalAcceptanceServer.class);
     }
     private static void register(RegisterGameTestsEvent event) {
         for (String name : TESTS.keySet()) {
@@ -64,7 +85,8 @@ public final class FeastGameTests {
             // A separate batch per test prevents shared gamerules and mock players interfering.
             var environment = event.registerEnvironment(id);
             event.registerTest(id, new FunctionGameTestInstance(ResourceKey.create(Registries.TEST_FUNCTION,id),
-                    new TestData<>(environment, Identifier.withDefaultNamespace("empty"), 200, 0, true)));
+                    new TestData<>(environment, Identifier.withDefaultNamespace("empty"),
+                            name.equals("rat_idle_roaming") ? 430 : name.equals("rat_forage_navigation") ? 270 : 200, 0, true)));
         }
     }
     private static CraftingInput input(int w, Item... items) {
@@ -105,6 +127,7 @@ public final class FeastGameTests {
         for(int mask=0;mask<16;mask++) for(int corner=0;corner<4;corner++) {
             var state=UnityFeastMod.TABLE.get().defaultBlockState();
             for(int i=0;i<4;i++) state=state.setValue(TableBlock.SLOTS[i],(mask&(1<<i))!=0);
+            h.getLevel().setBlock(pos,net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(),3);
             h.getLevel().setBlock(pos,state,3);
             var hand=new ItemStack(UnityFeastMod.DUMPLING.get(),2); player.setItemInHand(InteractionHand.MAIN_HAND,hand);
             double x=(corner==0||corner==3)?.25:.75,z=(corner<2)?.25:.75;
@@ -115,6 +138,7 @@ public final class FeastGameTests {
             // Stale state passed to second action must never be authoritative.
             state.useItemOn(hand,h.getLevel(),player,InteractionHand.OFF_HAND,hit);
             h.assertValueEqual(hand.getCount(),mask==15?2:1,"offhand ignored");
+            h.getLevel().setBlock(pos,net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(),3);
             h.getLevel().setBlock(pos,state,3);
             player.setItemInHand(InteractionHand.MAIN_HAND,ItemStack.EMPTY);
             var box=new AABB(pos).inflate(2);
@@ -134,6 +158,7 @@ public final class FeastGameTests {
         var box=new AABB(pos).inflate(4);
         for(int mode=0;mode<4;mode++) {
             h.getLevel().getEntitiesOfClass(ItemEntity.class,box).forEach(ItemEntity::discard);
+            h.getLevel().setBlock(pos,net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(),3);
             h.getLevel().setBlock(pos,full,3);
             breaker.setGameMode(mode==2?GameType.CREATIVE:GameType.SURVIVAL);
             h.getLevel().getGameRules().set(GameRules.BLOCK_DROPS,mode!=3,h.getLevel().getServer());
@@ -150,6 +175,7 @@ public final class FeastGameTests {
         for(boolean dropsEnabled:List.of(true,false)) {
             h.getLevel().getEntitiesOfClass(ItemEntity.class,box).forEach(ItemEntity::discard);
             h.getLevel().getGameRules().set(GameRules.BLOCK_DROPS,dropsEnabled,h.getLevel().getServer());
+            h.getLevel().setBlock(pos,net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(),3);
             h.getLevel().setBlock(pos,full,3);
             h.getLevel().explode(null,pos.getX()+.5,pos.getY()+.5,pos.getZ()+.5,3,Level.ExplosionInteraction.TNT);
             h.assertTrue(h.getLevel().getBlockState(pos).isAir(),"explosion destroys table");
