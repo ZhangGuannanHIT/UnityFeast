@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "unity_feast:silverwing"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "unity_feast:silverwing"
+      }
+    ]
+  }
+}

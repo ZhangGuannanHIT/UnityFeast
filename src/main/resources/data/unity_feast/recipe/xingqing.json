@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " C ",
+    "CSC",
+    " C "
+  ],
+  "key": {
+    "C": "unity_feast:bottle_cap",
+    "S": "unity_feast:cigarette"
+  },
+  "result": {
+    "id": "unity_feast:xingqing",
+    "count": 1
+  }
+}

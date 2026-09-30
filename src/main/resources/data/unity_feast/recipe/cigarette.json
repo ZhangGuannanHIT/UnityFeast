@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " P ",
+    "TTT",
+    " P "
+  ],
+  "key": {
+    "P": "minecraft:paper",
+    "T": "unity_feast:tobacco"
+  },
+  "result": {
+    "id": "unity_feast:cigarette",
+    "count": 1
+  }
+}

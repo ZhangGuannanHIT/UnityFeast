@@ -10,9 +10,10 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 
 public final class FoodDamage {
     public static final ResourceKey<DamageType> STINKY_FISH=ResourceKey.create(Registries.DAMAGE_TYPE,UnityFeastMod.id("stinky_fish"));
+    public static final ResourceKey<DamageType> CIGARETTE=ResourceKey.create(Registries.DAMAGE_TYPE,UnityFeastMod.id("cigarette"));
     private FoodDamage() {}
     @SubscribeEvent public static void incoming(LivingIncomingDamageEvent event) {
-        if(event.getSource().is(STINKY_FISH))
+        if(event.getSource().is(STINKY_FISH) || event.getSource().is(CIGARETTE))
             for(var reduction:DamageContainer.Reduction.values()) event.addReductionModifier(reduction,(container,amount)->0F);
     }
 }

@@ -46,6 +46,21 @@ public final class FeastGameTests {
     private static final Map<String, Consumer<GameTestHelper>> TESTS = new LinkedHashMap<>();
     static {
         if(!System.getProperty("unity_feast.scenario","").equals("legacy")) {
+        TESTS.put("smoke_recipes",SmokeTests::recipes);
+        TESTS.put("smoke_foods",SmokeTests::foods);
+        TESTS.put("smoke_deaths",SmokeTests::deaths);
+        TESTS.put("silverwing_armor",SilverwingTests::armor);
+        TESTS.put("silverwing_effects",SilverwingTests::effects);
+        TESTS.put("silverwing_lifecycle",SilverwingTests::lifecycle);
+        TESTS.put("bottle_rules_loot",GreenBottleTests::rulesAndLoot);
+        TESTS.put("bottle_spawning",GreenBottleTests::spawning);
+        TESTS.put("bottle_locomotion",GreenBottleTests::locomotion);
+        TESTS.put("bottle_idle_roaming",GreenBottleTests::idleRoaming);
+        TESTS.put("bottle_launches",BottleCombatTests::launches);
+        TESTS.put("bottle_damage",BottleCombatTests::damage);
+        TESTS.put("bottle_permissions",BottleCombatTests::permissions);
+        TESTS.put("bottle_persistence",BottleCombatTests::persistence);
+        TESTS.put("xingqing_melee",BottleCombatTests::melee);
         TESTS.put("kitchen_recipes",KitchenTests::recipes);
         TESTS.put("kitchen_vat",KitchenTests::vat);
         TESTS.put("kitchen_board",KitchenTests::board);
@@ -78,6 +93,8 @@ public final class FeastGameTests {
             TESTS.keySet().removeIf(name -> !name.startsWith("rat_") || name.equals("rat_jump"));
         if (System.getProperty("unity_feast.scenario", "").equals("kitchen"))
             TESTS.keySet().removeIf(name -> !name.startsWith("kitchen_"));
+        if (System.getProperty("unity_feast.scenario", "").equals("v130"))
+            TESTS.keySet().removeIf(name -> !name.startsWith("smoke_") && !name.startsWith("silverwing_") && !name.startsWith("bottle_") && !name.startsWith("xingqing_"));
         TESTS.forEach((name, test) -> FUNCTIONS.register(name, () -> test));
         }
     }
@@ -96,7 +113,7 @@ public final class FeastGameTests {
             var environment = event.registerEnvironment(id);
             event.registerTest(id, new FunctionGameTestInstance(ResourceKey.create(Registries.TEST_FUNCTION,id),
                     new TestData<>(environment, Identifier.withDefaultNamespace("empty"),
-                            name.equals("rat_idle_roaming") ? 430 : name.equals("rat_forage_navigation") ? 270 : 200, 0, true)));
+                            name.equals("rat_idle_roaming") || name.equals("bottle_idle_roaming") ? 430 : name.equals("rat_forage_navigation") ? 270 : 200, 0, true)));
         }
     }
     private static CraftingInput input(int w, Item... items) {

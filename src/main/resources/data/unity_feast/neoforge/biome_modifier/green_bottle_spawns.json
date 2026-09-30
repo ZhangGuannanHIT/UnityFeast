@@ -1,0 +1,5 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#unity_feast:spawns_green_bottle",
+  "spawners": {"type": "unity_feast:green_bottle", "weight": 10, "minCount": 4, "maxCount": 4}
+}

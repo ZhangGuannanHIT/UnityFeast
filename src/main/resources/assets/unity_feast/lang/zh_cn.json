@@ -27,5 +27,21 @@
   "block.unity_feast.cutting_board": "菜板",
   "item.unity_feast.raw_pork_slices": "猪肉生",
   "item.unity_feast.salmon_sashimi": "生鱼片",
-  "item.unity_feast.white_cut_chicken": "白切鸡"
+  "item.unity_feast.white_cut_chicken": "白切鸡",
+  "entity.unity_feast.green_bottle": "大绿棒子",
+  "entity.unity_feast.bottle_cap_projectile": "瓶盖投射物",
+  "item.unity_feast.bottle_cap": "瓶盖",
+  "item.unity_feast.silverwing_helmet": "银翼头盔",
+  "item.unity_feast.silverwing_chestplate": "银翼胸甲",
+  "item.unity_feast.silverwing_leggings": "银翼护腿",
+  "item.unity_feast.silverwing_boots": "银翼靴子",
+  "item.unity_feast.tobacco": "烟草",
+  "item.unity_feast.cigarette": "香烟",
+  "item.unity_feast.xingqing": "性情",
+  "tooltip.unity_feast.xingqing": "这扯不扯",
+  "death.attack.unity_feast.cigarette": "%1$s 被香烟呛倒了",
+  "death.attack.unity_feast.cigarette.player": "%1$s 在与 %2$s 交战时被香烟呛倒了",
+  "death.attack.unity_feast.bottle_cap": "%1$s 被瓶盖击倒了",
+  "death.attack.unity_feast.bottle_cap.player": "%1$s 被 %2$s 的瓶盖击倒了",
+  "death.attack.unity_feast.bottle_cap.item": "%1$s 被 %2$s 用 %3$s 发射的瓶盖击倒了"
 }

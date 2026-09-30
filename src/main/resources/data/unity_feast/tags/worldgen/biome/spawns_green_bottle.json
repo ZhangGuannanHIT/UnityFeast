@@ -1,0 +1,4 @@
+{
+  "replace": false,
+  "values": ["#c:is_plains", "#c:is_snowy_plains", "#c:is_savanna"]
+}

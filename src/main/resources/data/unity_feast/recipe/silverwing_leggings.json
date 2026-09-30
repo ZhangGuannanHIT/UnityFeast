@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "BBB",
+    "B B",
+    "B B"
+  ],
+  "key": {
+    "B": "unity_feast:bottle_cap"
+  },
+  "result": {
+    "id": "unity_feast:silverwing_leggings",
+    "count": 1
+  }
+}

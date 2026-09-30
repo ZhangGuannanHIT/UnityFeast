@@ -27,5 +27,21 @@
   "block.unity_feast.cutting_board": "Cutting Board",
   "item.unity_feast.raw_pork_slices": "Raw Pork Slices",
   "item.unity_feast.salmon_sashimi": "Salmon Sashimi",
-  "item.unity_feast.white_cut_chicken": "White-cut Chicken"
+  "item.unity_feast.white_cut_chicken": "White-cut Chicken",
+  "entity.unity_feast.green_bottle": "Green Bottle",
+  "entity.unity_feast.bottle_cap_projectile": "Bottle Cap Projectile",
+  "item.unity_feast.bottle_cap": "Bottle Cap",
+  "item.unity_feast.silverwing_helmet": "Silverwing Helmet",
+  "item.unity_feast.silverwing_chestplate": "Silverwing Chestplate",
+  "item.unity_feast.silverwing_leggings": "Silverwing Leggings",
+  "item.unity_feast.silverwing_boots": "Silverwing Boots",
+  "item.unity_feast.tobacco": "Tobacco",
+  "item.unity_feast.cigarette": "Cigarette",
+  "item.unity_feast.xingqing": "Xingqing",
+  "tooltip.unity_feast.xingqing": "Is this for real",
+  "death.attack.unity_feast.cigarette": "%1$s succumbed to a cigarette",
+  "death.attack.unity_feast.cigarette.player": "%1$s succumbed to a cigarette while fighting %2$s",
+  "death.attack.unity_feast.bottle_cap": "%1$s was struck down by a bottle cap",
+  "death.attack.unity_feast.bottle_cap.player": "%1$s was struck down by %2$s's bottle cap",
+  "death.attack.unity_feast.bottle_cap.item": "%1$s was struck down by %2$s using %3$s"
 }

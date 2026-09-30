@@ -12,6 +12,8 @@ public final class ClientRegistration {
         event.registerBlockEntityRenderer(UnityFeastMod.TABLE_ENTITY.get(),TableRenderer::new);
         event.registerBlockEntityRenderer(UnityFeastMod.CUTTING_BOARD_ENTITY.get(),CuttingBoardRenderer::new);
         event.registerEntityRenderer(UnityFeastMod.RAT.get(),RatRenderer::new);
+        event.registerEntityRenderer(UnityFeastMod.GREEN_BOTTLE.get(),GreenBottleRenderer::new);
+        event.registerEntityRenderer(UnityFeastMod.BOTTLE_CAP_PROJECTILE.get(),BottleCapRenderer::new);
     }
     @SubscribeEvent public static void layers(EntityRenderersEvent.RegisterLayerDefinitions event){event.registerLayerDefinition(RatModel.LAYER,RatModel::layer);}
 }

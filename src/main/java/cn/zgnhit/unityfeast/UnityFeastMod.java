@@ -8,6 +8,14 @@ import cn.zgnhit.unityfeast.block.CuttingBoardBlock;
 import cn.zgnhit.unityfeast.block.CuttingBoardBlockEntity;
 import cn.zgnhit.unityfeast.item.GreenbeltItem;
 import cn.zgnhit.unityfeast.item.KitchenKnifeItem;
+import cn.zgnhit.unityfeast.item.CigaretteItem;
+import cn.zgnhit.unityfeast.item.BottleCapItem;
+import cn.zgnhit.unityfeast.item.XingqingItem;
+import cn.zgnhit.unityfeast.entity.GreenBottle;
+import cn.zgnhit.unityfeast.entity.BottleCapProjectile;
+import cn.zgnhit.unityfeast.armor.SilverwingArmor;
+import cn.zgnhit.unityfeast.player.SilverwingStrengthService;
+import net.minecraft.world.item.equipment.ArmorType;
 import cn.zgnhit.unityfeast.recipe.SamePlanksBoardRecipe;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -71,6 +79,21 @@ public final class UnityFeastMod {
     public static final DeferredRegister<EntityType<?>> ENTITIES=DeferredRegister.create(Registries.ENTITY_TYPE,ID);
     public static final DeferredHolder<EntityType<?>,EntityType<Rat>> RAT=ENTITIES.register("rat",()->EntityType.Builder.of(Rat::new,MobCategory.CREATURE)
             .sized(.4F,.3F).eyeHeight(.23F).clientTrackingRange(8).build(ResourceKey.create(Registries.ENTITY_TYPE,id("rat"))));
+    public static final DeferredHolder<EntityType<?>,EntityType<GreenBottle>> GREEN_BOTTLE=ENTITIES.register("green_bottle",()->EntityType.Builder.of(GreenBottle::new,MobCategory.CREATURE)
+            .sized(.55F,1.5F).eyeHeight(1.38F).clientTrackingRange(8).build(ResourceKey.create(Registries.ENTITY_TYPE,id("green_bottle"))));
+    public static final DeferredHolder<EntityType<?>,EntityType<BottleCapProjectile>> BOTTLE_CAP_PROJECTILE=ENTITIES.register("bottle_cap_projectile",()->EntityType.Builder.<BottleCapProjectile>of(BottleCapProjectile::new,MobCategory.MISC)
+            .sized(.25F,.25F).clientTrackingRange(4).updateInterval(10).build(ResourceKey.create(Registries.ENTITY_TYPE,id("bottle_cap_projectile"))));
+    public static final DeferredItem<BottleCapItem> BOTTLE_CAP=ITEMS.registerItem("bottle_cap",BottleCapItem::new);
+    public static final DeferredItem<XingqingItem> XINGQING=ITEMS.registerItem("xingqing",XingqingItem::new);
+    public static final DeferredItem<Item> SILVERWING_HELMET=ITEMS.registerSimpleItem("silverwing_helmet",p->SilverwingArmor.properties(p,ArmorType.HELMET));
+    public static final DeferredItem<Item> SILVERWING_CHESTPLATE=ITEMS.registerSimpleItem("silverwing_chestplate",p->SilverwingArmor.properties(p,ArmorType.CHESTPLATE));
+    public static final DeferredItem<Item> SILVERWING_LEGGINGS=ITEMS.registerSimpleItem("silverwing_leggings",p->SilverwingArmor.properties(p,ArmorType.LEGGINGS));
+    public static final DeferredItem<Item> SILVERWING_BOOTS=ITEMS.registerSimpleItem("silverwing_boots",p->SilverwingArmor.properties(p,ArmorType.BOOTS));
+    public static final DeferredItem<Item> TOBACCO=ITEMS.registerSimpleItem("tobacco",p->p.component(DataComponents.CONSUMABLE,
+            effects(new MobEffectInstance(MobEffects.POISON,100))));
+    public static final DeferredItem<CigaretteItem> CIGARETTE=ITEMS.registerItem("cigarette",p->new CigaretteItem(p.component(DataComponents.CONSUMABLE,
+            effects(new MobEffectInstance(MobEffects.SPEED,600,1),new MobEffectInstance(MobEffects.JUMP_BOOST,600,1),
+                    new MobEffectInstance(MobEffects.NAUSEA,200),new MobEffectInstance(MobEffects.BLINDNESS,200)))));
 
     public static final DeferredBlock<TableBlock> TABLE = BLOCKS.registerBlock("table", TableBlock::new,
             p -> p.mapColor(MapColor.WOOD).strength(2.5F).sound(SoundType.WOOD).noOcclusion().pushReaction(PushReaction.BLOCK));
@@ -124,6 +147,7 @@ public final class UnityFeastMod {
         BLOCK_ENTITIES.register(bus);
         ENTITIES.register(bus);
         BIOME_MODIFIERS.register(bus);
+        SilverwingStrengthService.register(bus);
         NeoForge.EVENT_BUS.register(PlayerLifecycleEvents.class);
         NeoForge.EVENT_BUS.register(FoodDamage.class);
     }
@@ -138,6 +162,8 @@ public final class UnityFeastMod {
                     out.accept(WEIJIXIAN.get());out.accept(CAPTAIN.get());
                     out.accept(GREENBELT_ITEM.get());out.accept(SAUCE_VAT_ITEM.get());out.accept(SOY_PASTE.get());out.accept(DIPPED_LETTUCE.get());
                     out.accept(KITCHEN_KNIFE.get());out.accept(CUTTING_BOARD_ITEM.get());out.accept(RAW_PORK_SLICES.get());out.accept(SALMON_SASHIMI.get());out.accept(WHITE_CUT_CHICKEN.get());
+                    out.accept(BOTTLE_CAP.get());out.accept(TOBACCO.get());out.accept(CIGARETTE.get());out.accept(XINGQING.get());
+                    out.accept(SILVERWING_HELMET.get());out.accept(SILVERWING_CHESTPLATE.get());out.accept(SILVERWING_LEGGINGS.get());out.accept(SILVERWING_BOOTS.get());
                 }).build());
     }
 
